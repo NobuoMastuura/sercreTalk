@@ -15,6 +15,7 @@
 
 
 ## Comment Table
+
 |---------------------|-------|--------|
 | user_id | integer ||
 | post_id | integer ||
