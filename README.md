@@ -16,6 +16,7 @@
 
 ## Comment Table
 
+| Column | type | Options |
 |---------------------|-------|--------|
 | user_id | integer ||
 | post_id | integer ||
