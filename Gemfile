@@ -67,3 +67,14 @@ gem 'pry-rails'
 gem 'sprockets'
 # ブートストラップ
 gem 'bootstrap', '~> 4.1.3'
+# jQuery
+gem 'jquery-rails'
+# ページネーション
+gem 'kaminari'
+# ログイン機能
+gem 'devise'
+# 画像アップロード機能
+gem 'carrierwave'
+# 画像ファイルをリサイズ
+gem 'rmagick'
+gem 'mini_magick'

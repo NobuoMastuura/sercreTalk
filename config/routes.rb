@@ -1,3 +1,9 @@
 Rails.application.routes.draw do
-  get 'talk' => 'talk#index'
+  devise_for  :users
+  root 'talk#index'
+  resources   :talk do
+    resources   :comments, only: [:create]
+    resources   :likes, only: [:create, :destroy]
+  end
+  resources   :users, only: [:show]
 end

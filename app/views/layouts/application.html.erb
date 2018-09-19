@@ -7,10 +7,48 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
 
   </head>
 
   <body>
-    <%= yield %>
+    <header class="bg-primary">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-3 mb-4">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+          <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+              <%= link_to "ホーム", talk_index_path, class: 'nav-link' %>
+            </li>
+            <% if user_signed_in? %>
+              <li class="nav-item">
+                <a class="nav-link" href="/users/<%= current_user.id %>">マイページ</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="">
+          <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'btn btn-outline-light' %>
+            <%= link_to "投稿する", "/talk/new", method: :get, class: "btn btn-light" %>
+          <% else %>
+            <%= link_to "ログイン", new_user_session_path, class: 'btn btn-light post' %>
+            <%= link_to "新規登録", new_user_registration_path, class: 'btn btn-light post' %>
+          <% end %>
+        </div>
+      </nav>
+    </header>
+
+    <!-- コンテンツ部分 -->
+    <div class="container col-12 h-100">
+      <%= yield %>
+    </div>
+
+    <!-- フッター -->
+    <footer class="mx-auto" style="width: 250px;">
+      <p class="text-secondary">NOBU ALL RIGHTS RESERVED</p>
+    </footer>
   </body>
 </html>

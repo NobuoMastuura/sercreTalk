@@ -1,0 +1,27 @@
+<div class="col-sm-7 offset-sm-3">
+  <h4 class="text-secondary"><%= @name.name  %>さんの一覧</h4>
+</div>
+
+<% @post.each do |p| %>
+  <div class="card text-white bg-dark mb-3 mx-auto" style="max-width: 30rem;">
+    <div class="card-header">
+      <button type="button" class="btn btn-secondary bg-dark btn-outline-dark"><%= link_to "#{p.user.name}", "/talk/#{p.id}", method: :get, class: "text-white btn btn-sm" %></button>
+      <div class="btn-group float-right">
+        <button type="button" class="btn btn-secondary bg-dark dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        </button>
+        <div class="dropdown-menu bg-dark">
+          <% if  user_signed_in? && p.user_id == current_user.id %>
+          <%= link_to '削除', "/talk/#{p.id}", method: :delete, class: "dropdown-item text-white bg-dark" %>
+          <%= link_to '編集', "/talk/#{p.id}/edit", method: :get, class: "dropdown-item text-white bg-dark" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <%= simple_format(p.text) %>
+    </div>
+    <div class="mx-auto mb-3">
+      <%= image_tag p.image.to_s %>
+    </div>
+  </div>
+<% end %>

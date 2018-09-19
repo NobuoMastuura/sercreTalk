@@ -1,0 +1,42 @@
+<div class="col-sm-7 offset-sm-3">
+  <h4 class="text-secondary"><%= @post.user.name %>の投稿</h4>
+</div>
+
+
+<div class="card text-white bg-dark mb-3 mx-auto" style="max-width: 30rem;">
+  <div class="card-header"><%= @post.user.name %></div>
+  <div class="card-body">
+    <%= simple_format(@post.text) %>
+  </div>
+  <div class="mx-auto mb-3">
+    <%= image_tag @post.image.to_s %>
+  </div>
+</div>
+
+<div>
+  <!-- ここからフォーム -->
+  <% if current_user %>
+    <%= form_tag("/talk/#{@post.id}/comments", method: :post) do %>
+      <div class="col-sm-6 offset-sm-3">
+        <textarea cols="30" name="text" placeholder="コメントする" rows="2" class="form-control"></textarea>
+      </div>
+      <div class="col-sm-6 offset-sm-3 mt-2" >
+        <input type="submit" value="SENT" class="btn btn-primary">
+      </div>
+    <% end %>
+  <% end %>
+</div>
+
+<div class="container mt-4">
+  <% if @comment %>
+    <h6 class="text-center text-secondary" ><コメント一覧></h6>
+    <% @comment.each do |c| %>
+      <p class="alert alert-info mx-auto" style="max-width: 40rem;">
+        <strong><%= c.user.name %><br/></strong>
+        <%= c.text %>
+      </p>
+    <% end %>
+  <% end %>
+</div>
+
+<!-- class="card text-white bg-dark mb-3 mx-auto" style="max-width: 30rem;" -->
