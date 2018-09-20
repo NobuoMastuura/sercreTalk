@@ -78,7 +78,7 @@ gem 'carrierwave'
 # 画像ファイルをリサイズ
 gem 'rmagick'
 gem 'mini_magick'
-
+gem 'fog'
 
 group :production do
   gem 'unicorn'
